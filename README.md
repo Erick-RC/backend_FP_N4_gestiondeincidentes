@@ -1,3 +1,8 @@
+## Diagrama Entidad Relacional
+![image](https://github.com/user-attachments/assets/73e2b64a-1e62-4971-bf1a-860f37cdde86)
+
+
+
 ## Guía de Rutas de la API ##
 Autenticación
 ## Registro de Usuario
