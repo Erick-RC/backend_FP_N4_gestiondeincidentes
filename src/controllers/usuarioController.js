@@ -4,14 +4,21 @@ import jwt from 'jsonwebtoken';
 
 export const createUser = async (req, res) => {
   const { nombre, email, password, tipo } = req.body;
+  console.log('Datos recibidos:', { nombre, email, password, tipo });
+
   const hashedPassword = await bcrypt.hash(password, 10);
+  console.log('Contraseña hasheada:', hashedPassword);
 
   try {
     const [result] = await pool.query('INSERT INTO Usuario (Nombre, Email, Contraseña, Tipo) VALUES (?, ?, ?, ?)', [nombre, email, hashedPassword, tipo]);
+    console.log('Resultado de la consulta:', result);
+
     const token = jwt.sign({ id: result.insertId }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    console.log('Token generado:', token);
 
     res.status(201).json({ id: result.insertId, nombre, email, tipo, token });
   } catch (error) {
+    console.error('Error al crear el usuario:', error);
     res.status(500).json({ message: 'Error al crear el usuario.' });
   }
 };
