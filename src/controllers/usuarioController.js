@@ -71,3 +71,25 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar el usuario.' });
   }
 };
+
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const [result] = await pool.query('SELECT * FROM Usuario WHERE Email = ?', [email]);
+    if (result.length === 0) {
+      return res.status(401).json({ message: 'Credenciales incorrectas.' });
+    }
+
+    const user = result[0];
+    const passwordMatch = await bcrypt.compare(password, user.Contraseña);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Credenciales incorrectas.' });
+    }
+
+    const token = jwt.sign({ id: user.ID }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al iniciar sesión.' });
+  }
+};
