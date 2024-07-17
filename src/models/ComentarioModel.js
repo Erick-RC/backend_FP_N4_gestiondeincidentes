@@ -1,4 +1,3 @@
-// src/models/comentarioModel.js
 import pool from '../config/db.js';
 
 export const createComentario = async (incidenciaId, usuarioId, contenido) => {

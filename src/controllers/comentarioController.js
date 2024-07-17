@@ -1,4 +1,3 @@
-// src/controllers/comentarioController.js
 import * as comentarioModel from '../models/comentarioModel.js';
 
 export const createComentario = async (req, res) => {

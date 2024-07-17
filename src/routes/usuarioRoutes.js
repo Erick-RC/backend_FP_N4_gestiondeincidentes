@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', createUser);
 router.post('/login', loginUser);
-router.get('/:id', authMiddleware, getUser); // Ejemplo de ruta protegida
+router.get('/:id', authMiddleware, getUser);
 router.put('/:id', authMiddleware, updateUser);
 router.delete('/:id', authMiddleware, deleteUser);
 

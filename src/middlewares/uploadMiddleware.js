@@ -1,7 +1,7 @@
 import multer from 'multer';
 import path from 'path';
 
-// Configuración de multer para almacenar archivos en una carpeta llamada 'uploads'
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// Filtro de archivos para aceptar solo imágenes
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|gif/;
   const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
@@ -24,7 +23,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Crear el middleware de multer
+
 const upload = multer({
   storage,
   fileFilter
