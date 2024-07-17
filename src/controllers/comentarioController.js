@@ -1,3 +1,4 @@
+// src/controllers/comentarioController.js
 import * as comentarioModel from '../models/comentarioModel.js';
 
 export const createComentario = async (req, res) => {
@@ -19,5 +20,19 @@ export const getComentarios = async (req, res) => {
     res.status(200).json(comentarios);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los comentarios.' });
+  }
+};
+
+export const deleteComentario = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const affectedRows = await comentarioModel.deleteComentario(id);
+    if (affectedRows === 0) {
+      return res.status(404).json({ message: 'Comentario no encontrado.' });
+    }
+    res.status(200).json({ message: 'Comentario eliminado con éxito.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al eliminar el comentario.' });
   }
 };

@@ -9,7 +9,7 @@ export const createIncidencia = async (usuarioId, asunto, tipo, descripcion, est
 };
 
 export const getIncidencias = async (filters) => {
-  const query = 'SELECT * FROM Incidencia WHERE 1=1';
+  let query = 'SELECT * FROM Incidencia WHERE 1=1';
   const params = [];
   
   if (filters.estado) {
@@ -26,4 +26,18 @@ export const getIncidencias = async (filters) => {
   return result;
 };
 
-// Otros métodos: updateIncidencia, deleteIncidencia...
+export const updateIncidencia = async (id, asunto, tipo, descripcion, estado) => {
+  const [result] = await pool.query(
+    'UPDATE Incidencia SET Asunto = ?, Tipo = ?, Descripción = ?, Estado = ?, Fecha_actualización = NOW() WHERE ID = ?',
+    [asunto, tipo, descripcion, estado, id]
+  );
+  return result.affectedRows;
+};
+
+export const deleteIncidencia = async (id) => {
+  const [result] = await pool.query(
+    'DELETE FROM Incidencia WHERE ID = ?',
+    [id]
+  );
+  return result.affectedRows;
+};
