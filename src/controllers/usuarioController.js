@@ -87,8 +87,12 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Credenciales incorrectas.' });
     }
 
-    const token = jwt.sign({ id: user.ID }, process.env.SECRET_KEY, { expiresIn: '1h' });
-    res.status(200).json({ token });
+    // Crear el payload del token con ID y Tipo
+    const payload = { id: user.ID, tipo: user.Tipo };
+    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
+
+    // Enviar el token y el tipo en la respuesta
+    res.status(200).json({ token, tipo: user.Tipo });
   } catch (error) {
     res.status(500).json({ message: 'Error al iniciar sesión.' });
   }

@@ -32,7 +32,8 @@ Cuerpo de la solicitud:
 }
 Respuesta exitosa (200):
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidGlwbyI6InJlc2lkZW50ZSIsImlhdCI6MTcyMTY3NzY0NSwiZXhwIjoxNzIxNjgxMjQ1fQ.GXo8kvPo7ZzeK8KFbXWfR6Y1YuXcNYhqrJe5zMGzGUs",
+  "tipo": "residente"
 }
 ## Gestión de Usuarios
 Obtener Usuario por ID
@@ -103,7 +104,7 @@ Respuesta exitosa (200):
     "Asunto": "Asunto de la Incidencia",
     "Tipo": "Tipo de Incidencia",
     "Descripcion": "Descripción detallada de la incidencia",
-    "Estado": "Estado de la Incidencia"
+    "Estado": "Resuelta"
   }
 ]
 ## Actualizar Incidencia
