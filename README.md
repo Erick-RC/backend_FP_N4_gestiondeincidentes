@@ -33,7 +33,7 @@ Cuerpo de la solicitud:
 Respuesta exitosa (200):
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidGlwbyI6InJlc2lkZW50ZSIsImlhdCI6MTcyMTY3NzY0NSwiZXhwIjoxNzIxNjgxMjQ1fQ.GXo8kvPo7ZzeK8KFbXWfR6Y1YuXcNYhqrJe5zMGzGUs",
-  "tipo": "residente"
+  "tipo": "residente" // o "administrador"
 }
 ## Gestión de Usuarios
 Obtener Usuario por ID
