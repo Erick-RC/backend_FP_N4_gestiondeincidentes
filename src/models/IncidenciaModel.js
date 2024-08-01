@@ -1,10 +1,15 @@
 import pool from '../config/db.js';
 
 export const createIncidencia = async (usuarioId, asunto, tipo, descripcion, estado) => {
+  console.log('Ejecutando query para crear incidencia:', { usuarioId, asunto, tipo, descripcion, estado });
+  
   const [result] = await pool.query(
-    'INSERT INTO Incidencia (Usuario_ID, Asunto, Tipo, Descripción, Estado, Fecha_creación) VALUES (?, ?, ?, ?, ?, NOW())',
+    'INSERT INTO Incidencia (Usuario_ID, Asunto, Tipo, Descripción, Estado, Fecha_creación, Fecha_actualización) VALUES (?, ?, ?, ?, ?, NOW(), NOW())',
     [usuarioId, asunto, tipo, descripcion, estado]
   );
+  
+  console.log('Resultado de la creación:', result);
+  
   return result.insertId;
 };
 
@@ -27,17 +32,29 @@ export const getIncidencias = async (filters) => {
 };
 
 export const updateIncidencia = async (id, asunto, tipo, descripcion, estado) => {
-  const [result] = await pool.query(
-    'UPDATE Incidencia SET Asunto = ?, Tipo = ?, Descripción = ?, Estado = ?, Fecha_actualización = NOW() WHERE ID = ?',
-    [asunto, tipo, descripcion, estado, id]
-  );
+  console.log('Ejecutando query para actualizar incidencia:', { id, asunto, tipo, descripcion, estado });
+
+  const query = `
+    UPDATE Incidencia
+    SET Asunto = ?, Tipo = ?, Descripción = ?, Estado = ?, Fecha_actualización = NOW()
+    WHERE ID = ?
+  `;
+  const params = [asunto, tipo, descripcion, estado, id];
+
+  console.log('Query:', query);
+  console.log('Params:', params);
+
+  const [result] = await pool.query(query, params);
+
+  console.log('Resultado de la actualización:', result);
+
   return result.affectedRows;
 };
 
-export const deleteIncidencia = async (id) => {
+export const getIncidenciaById = async (id) => {
   const [result] = await pool.query(
-    'DELETE FROM Incidencia WHERE ID = ?',
+    'SELECT * FROM Incidencia WHERE ID = ?',
     [id]
   );
-  return result.affectedRows;
+  return result[0]; // Devolvemos el primer resultado
 };
