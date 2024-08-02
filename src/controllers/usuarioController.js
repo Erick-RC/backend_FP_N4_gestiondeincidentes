@@ -76,14 +76,21 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // Buscar el usuario por email
     const [result] = await pool.query('SELECT * FROM Usuario WHERE Email = ?', [email]);
+    
     if (result.length === 0) {
+      // Usuario no encontrado
       return res.status(401).json({ message: 'Credenciales incorrectas.' });
     }
 
     const user = result[0];
+
+    // Comparar la contraseña proporcionada con la almacenada
     const passwordMatch = await bcrypt.compare(password, user.Contraseña);
+    
     if (!passwordMatch) {
+      // Contraseña incorrecta
       return res.status(401).json({ message: 'Credenciales incorrectas.' });
     }
 
@@ -92,8 +99,9 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
 
     // Enviar el token y el tipo en la respuesta
-    res.status(200).json({ token, tipo: user.Tipo });
+    res.status(200).json({ token, tipo: user.Tipo, id: user.ID });
   } catch (error) {
+    console.error('Error al iniciar sesión:', error);
     res.status(500).json({ message: 'Error al iniciar sesión.' });
   }
 };
