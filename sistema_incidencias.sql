@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2024 a las 23:35:33
+-- Tiempo de generación: 02-08-2024 a las 10:43:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -83,7 +83,13 @@ CREATE TABLE `incidencia` (
 --
 
 INSERT INTO `incidencia` (`ID`, `Usuario_ID`, `Asunto`, `Tipo`, `Descripción`, `Estado`, `Fecha_creación`, `Fecha_actualización`) VALUES
-(1, NULL, 'Fuga de agua', 'Urgente', 'Hay una fuga en el baño del segundo piso.', 'pendiente', '2024-07-17 01:19:20', '2024-07-17 01:19:20');
+(18, 6, 'Se quemo la tina', 'fontaneria', 'La tina se quemo y no se que hacer, 3er piso. ', 'en progreso', '2024-08-02 08:34:51', '2024-08-02 08:42:30'),
+(19, 7, 'Hay problemas con la lavadora', 'fontaneria', 'no podemos hacer que funcione la lavadora.', 'pendiente', '2024-08-02 08:36:10', '2024-08-02 08:36:10'),
+(20, 8, 'Fuga de agua en el baño', ' Fontanería', ' Hay una fuga de agua en el baño del segundo piso, justo al lado del lavabo. El agua cae constantemente y ha causado charcos en el suelo.', 'en progreso', '2024-08-02 08:40:13', '2024-08-02 08:42:33'),
+(21, 8, 'Problema con la electricidad en la sala', 'Electricidad', 'Los enchufes en la sala principal no están funcionando correctamente. Algunos aparatos no encienden, y hay una chispa ocasional al conectar algo.', 'pendiente', '2024-08-02 08:40:29', '2024-08-02 08:40:29'),
+(22, 10, 'Abertura en la puerta de la oficina', 'Carpintería', ' La puerta de la oficina tiene una abertura considerable en la parte inferior. La puerta no cierra completamente, lo que permite que entre aire frío.', 'resuelto', '2024-08-02 08:41:17', '2024-08-02 08:42:35'),
+(23, 10, 'Problema con el aire acondicionado', 'Climatización', 'El aire acondicionado en la oficina no está enfriando correctamente. La temperatura en la oficina sigue siendo alta, y el ventilador hace un ruido constante y molesto.', 'resuelto', '2024-08-02 08:41:50', '2024-08-02 08:42:37'),
+(24, 10, 'Aire acondicionado de oficina no funciona correctamente', 'Mantenimiento de climatización', 'El aire acondicionado en la oficina de la planta 2 no está funcionando de manera adecuada. Aunque el aparato está encendido, la temperatura ambiente sigue siendo considerablemente más alta que la establecida en el termostato. El equipo emite un ruido constante, similar a un zumbido o vibración, que resulta bastante molesto durante las horas de trabajo. Además, se han notado algunas fugas de agua alrededor de la unidad, que podrían estar relacionadas con el mal funcionamiento. Este problema ha estado ocurriendo durante los últimos dos días y está afectando la comodidad y productividad del personal. Se requiere una revisión exhaustiva para determinar si es necesario reparar o reemplazar componentes del sistema de climatización.', 'en progreso', '2024-08-02 08:42:07', '2024-08-02 08:42:43');
 
 -- --------------------------------------------------------
 
@@ -108,7 +114,6 @@ INSERT INTO `usuario` (`ID`, `Nombre`, `Email`, `Contraseña`, `Tipo`) VALUES
 (6, 'Jose Marinez', 'jose.martinez2@example.com', '$2b$10$eXO8yQjESrIa/piS59tvfe2qtlEzBi7WdINCxnOShBQVh0fNsj6ki', 'residente'),
 (7, 'Noe Perez', 'noe.martinez@example.com', '$2b$10$wni/8ej8FpEKvsr/HhjFMOYG7cDTGJhHeLmpvMpR6h1jK0FHkE2vm', 'residente'),
 (8, 'Perro Pascal', 'perropascal@example.com', '$2b$10$FzVX3wQnG66nQmvVfRiIyOxbt4IliT2Ut6eUv5ZyoFDiRnYtBx90O', 'residente'),
-(9, 'Jose Martinez', 'JUAN.JOSE.MARTINES@example.com', '$2b$10$Iwm7RpKRKgVkGp4M230bXeR0Xg5zW44VRN0MTtH6lQ7oguu04.Wmi', 'residente'),
 (10, 'Elias Acasia', 'elias.acasia@example.com', '$2b$10$MoedTKf0yLZbXUvH..yzSe03/K9jJN7GyZLdxNG50LM7I0Y/DwVTi', 'residente');
 
 --
@@ -164,7 +169,7 @@ ALTER TABLE `imagen`
 -- AUTO_INCREMENT de la tabla `incidencia`
 --
 ALTER TABLE `incidencia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
